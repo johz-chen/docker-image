@@ -1,0 +1,31 @@
+name: Upload Docker Image
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '**'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Save image
+        run: |
+          docker pull debian:bullseye-slim --platform	linux/arm64
+          docker save debian:bullseye-slim | gzip > debian-arm64.tar.gz
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: image-debian-arm64.tar.gz
+          path: |
+            ./debian-arm64.tar.gz
+          retention-days: 1
