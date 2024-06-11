@@ -25,6 +25,16 @@ jobs:
 
       - name: Push image to hub
         run: |
-          curl -O https://api7-enterprise-1301662268.cos.ap-chengdu.myqcloud.com/packages/tools/confd-0.16.1-arm64.tar.gz
-          docker load -i confd-0.16.1-arm64.tar.gz
-          docker push johz/confd:0.16.1-arm64
+          docker pull api7/api7-ee-3-gateway:3.2.11.3
+
+          docker save api7/api7-ee-3-gateway:3.2.11.3 | gzip > api7-ee-3-gateway-3.2.11.3.tar.gz
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: api7-ee-3-gateway-3.2.11.3.tar.gz
+          path: |
+            ./api7-ee-3-gateway-3.2.11.3.tar.gz
+          retention-days: 1
+
+
