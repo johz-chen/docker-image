@@ -25,16 +25,16 @@ jobs:
 
       - name: Push image to hub
         run: |
-          docker pull api7/api7-ee-3-gateway:3.2.11.3
+          docker pull registry:latest
 
-          docker save api7/api7-ee-3-gateway:3.2.11.3 | gzip > api7-ee-3-gateway-3.2.11.3.tar.gz
+          docker save registry:latest | gzip > registry-latest.tar.gz
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
-          name: api7-ee-3-gateway-3.2.11.3.tar.gz
+          name: registry-latest.tar.gz
           path: |
-            ./api7-ee-3-gateway-3.2.11.3.tar.gz
+            ./registry-latest.tar.gz
           retention-days: 1
 
 
