@@ -25,16 +25,16 @@ jobs:
 
       - name: Push image to hub
         run: |
-          docker pull api7/api7-ee-3-gateway:3.2.11.6
+          docker pull splunk/splunk:8.2.3
 
-          docker save api7/api7-ee-3-gateway:3.2.11.6 | gzip > api7-ee-3-gateway-3.2.11.6.tar.gz
+          docker save splunk/splunk:8.2.3 | gzip > splunk:8.2.3.tar.gz
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v2.2.3
         with:
-          name: api7-ee-3-gateway-3.2.11.6.tar.gz
+          name: splunk:8.2.3.tar.gz
           path: |
-            ./api7-ee-3-gateway-3.2.11.6.tar.gz
+            ./splunk:8.2.3.tar.gz
           retention-days: 1
 
 
