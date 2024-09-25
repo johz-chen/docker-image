@@ -30,7 +30,7 @@ jobs:
           docker save splunk/splunk:8.2.3 | gzip > splunk:8.2.3.tar.gz
 
       - name: Publish Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: splunk:8.2.3.tar.gz
           path: |
